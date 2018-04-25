@@ -1,0 +1,27 @@
+@import "../base/settings";
+
+.cars-list {
+  display: flex;
+  flex-direction: column;
+  background-color: blue;
+}
+
+.cars-list__item {
+  &:hover {
+    background-color: darken(blue, 10%);
+  }
+
+  &:first-of-type {
+    border-top: 1px solid darken(blue, 10%);
+  }
+
+  list-style: none;
+  padding: $s-spacing;
+  color: white;
+  border-bottom: 1px solid darken(blue, 10%);
+}
+
+.cars-list__action {
+  padding: $s-spacing;
+  align-self: flex-end;
+}

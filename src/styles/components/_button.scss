@@ -1,0 +1,8 @@
+@import "../base/settings";
+
+.button {
+  padding: $xs-spacing $s-spacing;
+  font-size: $m-text;
+  font-weight: bold;
+  border-radius: $s-border;
+}

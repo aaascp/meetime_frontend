@@ -9,7 +9,9 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <CarsList />
+        <div className="container">
+          <CarsList />
+        </div>
         <CarsForm />
       </div>
     );
