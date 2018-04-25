@@ -2,8 +2,15 @@ import React from "react";
 
 class CarsListItem extends React.Component {
   onItemClick = event => {
-    const item = event.target.dataset.id;
-    this.props.itemClickHandler(item);
+    event.preventDefault();
+    const itemId = event.target.dataset.id;
+    this.props.itemClickHandler(itemId);
+  };
+
+  onItemDeleteClick = event => {
+    event.stopPropagation();
+    const itemId = event.target.dataset.id;
+    this.props.itemClickDeleteHandler(itemId);
   };
 
   render() {
@@ -11,9 +18,15 @@ class CarsListItem extends React.Component {
       <li
         className="cars-list__item"
         onClick={this.onItemClick}
-        data-id={this.props.item}
+        data-id={this.props.item.id}
       >
-        {this.props.item}
+        {this.props.item.model}
+        <button
+          className="button button--inline"
+          onClick={this.onItemDeleteClick}
+        >
+          X
+        </button>
       </li>
     );
   }

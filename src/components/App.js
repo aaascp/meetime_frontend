@@ -1,21 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 
 import Header from "./Header";
-import CarsList from "./CarsList";
-import CarsForm from "./CarsForm";
+import Cars from "./Cars";
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <Header />
-        <div className="container">
-          <CarsList />
-        </div>
-        <CarsForm />
-      </div>
-    );
-  }
-}
+const App = () => {
+  return (
+    <div>
+      <Header />
+      <Cars />
+    </div>
+  );
+};
 
 export default App;

@@ -5,4 +5,14 @@
   font-size: $m-text;
   font-weight: bold;
   border-radius: $s-border;
+
+  &:disabled {
+    border-color: grey;
+  }
+}
+
+.button--inline {
+  padding: 0;
+  background-color: transparent;
+  border: none;
 }

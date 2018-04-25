@@ -19,9 +19,12 @@
   padding: $s-spacing;
   color: white;
   border-bottom: 1px solid darken(blue, 10%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.cars-list__action {
-  padding: $s-spacing;
-  align-self: flex-end;
+.cars-list__item .button {
+  margin-left: $xxl-spacing;
+  color: white;
 }
