@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import CarsList from "./CarsList";
+// import SplitPane from "./SplitPane";
 import CarsForm from "./forms/CarsForm";
 
 import * as actions from "../actions";
@@ -38,16 +39,20 @@ class Cars extends React.Component {
   render() {
     return (
       <div className="container split-pane">
-        <CarsList
-          handleCarClick={this.handleCarClick}
-          handleCarDeleteClick={this.handleCarDeleteClick}
-          cars={this.props.cars}
-        />
-        <CarsForm
-          handleSubmitForm={this.handleSubmitForm}
-          selectedCar={this.state.selectedCar}
-          handleClearClick={this.handleClearClick}
-        />
+        <div className="split-pane__left">
+          <CarsList
+            handleCarClick={this.handleCarClick}
+            handleCarDeleteClick={this.handleCarDeleteClick}
+            cars={this.props.cars}
+          />
+        </div>
+        <div className="split-pane__right">
+          <CarsForm
+            handleSubmitForm={this.handleSubmitForm}
+            selectedCar={this.state.selectedCar}
+            handleClearClick={this.handleClearClick}
+          />
+        </div>
       </div>
     );
   }

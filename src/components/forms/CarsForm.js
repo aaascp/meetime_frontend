@@ -16,7 +16,7 @@ class CarsForm extends React.Component {
 
   renderFields() {
     return carsFields.map(
-      ({ label, name, placeholder, disabled, hideOnNew }) => {
+      ({ label, name, placeholder, disabled, hideOnNew, validations }) => {
         return (
           <Field
             key={name}
@@ -24,6 +24,7 @@ class CarsForm extends React.Component {
             type="text"
             hide={!this.props.selectedCar && hideOnNew}
             label={label}
+            validate={validations}
             disabled={disabled || false}
             placeholder={placeholder}
             name={name}
@@ -72,21 +73,6 @@ class CarsForm extends React.Component {
   }
 }
 
-function validate(values) {
-  const errors = {};
-
-  // errors.recipients = validateEmails(values.recipients || "");
-  //
-  // _.each(formFields, ({ name }) => {
-  //   if (!values[name]) {
-  //     errors[name] = "You must provide a value";
-  //   }
-  // });
-
-  return errors;
-}
-
 export default reduxForm({
-  validate,
   form: "carsForm"
 })(CarsForm);

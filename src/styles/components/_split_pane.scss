@@ -5,3 +5,15 @@
   background-color: yellow;
   justify-content: space-around;
 }
+
+.split-pane__left {
+  background-color: green;
+}
+
+.split-pane__right {
+  display: none;
+
+  @media (min-width: $desktop-breakpoint) {
+    display: block;
+  }
+}
