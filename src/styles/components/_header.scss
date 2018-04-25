@@ -1,0 +1,19 @@
+@import "../base/settings";
+
+.header {
+  background: red;
+  padding: 16px;
+}
+
+.header__input {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: auto;
+  background: blue;
+  border: none;
+  color: white;
+  padding: $xs-spacing $s-spacing;
+  font-size: $xl-text;
+  border-bottom: 0.3rem solid darken(blue, 10%);
+}
