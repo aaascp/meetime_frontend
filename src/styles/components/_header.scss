@@ -2,18 +2,12 @@
 
 .header {
   background: red;
-  padding: 16px;
 }
 
-.header__input {
-  width: 100%;
-  max-width: 600px;
-  display: block;
-  margin: auto;
-  background: blue;
-  border: none;
-  color: white;
-  padding: $xs-spacing $s-spacing;
+.form__input--header {
+  // border-bottom: 0.3rem solid darken(blue, 10%);
+}
+
+.form__input-value--header {
   font-size: $xl-text;
-  border-bottom: 0.3rem solid darken(blue, 10%);
 }

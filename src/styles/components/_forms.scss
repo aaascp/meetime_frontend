@@ -1,0 +1,47 @@
+@import "../base/settings";
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $s-spacing;
+}
+
+.form__input {
+  background: blue;
+  color: white;
+  padding: $xs-spacing $s-spacing;
+  border: 10px outset green;
+}
+
+.form__input-value {
+  background: transparent;
+  outline: none;
+  border: none;
+  color: white;
+}
+
+.form__input--disabled {
+  opacity: 0.5;
+}
+
+.form__input--error {
+  border-color: red;
+}
+
+.form__error {
+  color: red;
+}
+
+.form__actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form__submit {
+  margin-left: auto;
+}

@@ -57,16 +57,22 @@ class CarsForm extends React.Component {
     return (
       <div>
         <h1>{this.props.selectedCar ? "Atualizar" : "Novo"} Carro</h1>
-        <form onSubmit={this.props.handleSubmit(this.handleSubmitForm)}>
+        <form
+          className="form"
+          onSubmit={this.props.handleSubmit(this.handleSubmitForm)}
+        >
           {this.renderFields()}
-          {this.props.selectedCar && (
-            <button className="button" onClick={this.onClearClick}>
-              Limpar
+
+          <div className="form__actions">
+            {this.props.selectedCar && (
+              <button className="button" onClick={this.onClearClick}>
+                Limpar
+              </button>
+            )}
+            <button type="submit" className="button form__submit">
+              {this.props.selectedCar ? "Atualizar" : "Salvar"}
             </button>
-          )}
-          <button type="submit" className="button">
-            {this.props.selectedCar ? "Atualizar" : "Salvar"}
-          </button>
+          </div>
         </form>
       </div>
     );

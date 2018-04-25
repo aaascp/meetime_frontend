@@ -16,8 +16,10 @@ const tooOld = value => {
 
 const validColor = value => {
   const colors = ["branco", "preto", "verde"];
+  const initialColors = colors.slice(0, colors.length - 1).join(", ");
+  const lastColor = colors.slice(-1);
   if (value && !colors.includes(value.toLowerCase())) {
-    return `Deve ser uma das seguintes cores [${colors}]`;
+    return `Deve ser ${initialColors} ou ${lastColor}`;
   } else {
     return undefined;
   }

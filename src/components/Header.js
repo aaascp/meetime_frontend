@@ -13,12 +13,16 @@ class Header extends React.Component {
   render() {
     return (
       <div className="header">
-        <input
-          type="text"
-          placeholder="Token do pipedrive"
-          className="header__input"
-          onChange={this.onTokenChange}
-        />
+        <div className="container">
+          <div className="form__input">
+            <input
+              type="text"
+              placeholder="Token do pipedrive"
+              className="form__input-value form__input-value--header"
+              onChange={this.onTokenChange}
+            />
+          </div>
+        </div>
       </div>
     );
   }

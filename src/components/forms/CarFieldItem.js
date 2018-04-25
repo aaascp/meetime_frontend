@@ -10,10 +10,23 @@ const CarFieldItem = ({
 }) => {
   return (
     !hide && (
-      <div>
-        <label>{label}</label>
-        <input {...input} placeholder={placeholder} disabled={disabled} />
-        <div>{touched && error}</div>
+      <div className="form__field">
+        <label className="form__label">{label}</label>
+        <div
+          className={
+            "form__input" +
+            (touched && error ? " form__input--error" : "") +
+            (disabled ? " form__input--disabled" : "")
+          }
+        >
+          <input
+            className="form__input-value"
+            {...input}
+            placeholder={placeholder}
+            disabled={disabled}
+          />
+        </div>
+        <div className="form__error">{touched && error}</div>
       </div>
     )
   );
