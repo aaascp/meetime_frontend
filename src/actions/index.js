@@ -1,8 +1,16 @@
-import { SET_TOKEN, FETCH_CARS_LIST } from "./types";
-// import postOptions from "../utils/fetchOptions";
+import { FETCH_CARS_LIST, FETCH_USERS_LIST } from "./types";
+import fetchOptions from "../utils/fetchOptions";
 
-export const setToken = token => {
-  return { type: SET_TOKEN, payload: token };
+export const fetchUsersList = token => async dispatch => {
+  if (!token) return;
+
+  const result = await fetch(
+    `https://api.pipedrive.com/v1/persons?api_token=${token}`,
+    fetchOptions({ cors: true })
+  );
+  const usersList = await result.json();
+
+  dispatch({ type: FETCH_USERS_LIST, payload: usersList.data });
 };
 
 export const fetchCarsList = () => async dispatch => {

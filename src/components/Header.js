@@ -1,13 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
+import { debounce } from "lodash";
 import * as actions from "../actions";
 
 class Header extends React.Component {
   state = { token: undefined };
 
+  componentDidMount() {
+    this.getUsersList = debounce(this.getUsersList, 1500);
+  }
+
+  getUsersList = token => {
+    this.props.fetchUsersList(token);
+  };
+
   onTokenChange = event => {
     const token = event.target.value;
-    this.props.setToken(token);
+    this.getUsersList(token);
   };
 
   render() {

@@ -1,10 +1,14 @@
-export default (method, body) => {
-  return {
+export default ({ method = "GET", body, cors = false }) => {
+  const options = {
     method: method,
-    body: JSON.Stringfy(body),
+    mode: cors ? "cors" : "same-origin",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json"
     }
   };
+
+  if (body) options.body = JSON.stringify(body);
+
+  return options;
 };

@@ -31,7 +31,8 @@ export default [
     label: "Responsável",
     name: "user",
     placeholder: "Usuários do Pipedrive",
-    validations: required
+    validations: required,
+    isSelectField: true
   },
   {
     label: "Modelo",

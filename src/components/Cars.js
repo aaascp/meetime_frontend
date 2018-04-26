@@ -37,6 +37,7 @@ class Cars extends React.Component {
   };
 
   render() {
+    console.log("Andre ", this.props.users);
     return (
       <div className="container split-pane">
         <div className="split-pane__left">
@@ -48,6 +49,7 @@ class Cars extends React.Component {
         </div>
         <div className="split-pane__right">
           <CarsForm
+            usersList={this.props.users}
             handleSubmitForm={this.handleSubmitForm}
             selectedCar={this.state.selectedCar}
             handleClearClick={this.handleClearClick}
@@ -60,6 +62,7 @@ class Cars extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    users: state.users,
     cars: state.cars,
     carsForm: state.form.carsForm
   };

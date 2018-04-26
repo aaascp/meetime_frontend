@@ -1,12 +1,10 @@
 import { combineReducers } from "redux";
 import { reducer as reduxForm } from "redux-form";
+import usersReducer from "./usersReducer";
 import carsListReducer from "./carsListReducer";
-import selectedCarReducer from "./selectedCarReducer";
-import tokenReducer from "./tokenReducer";
 
 export default combineReducers({
+  users: usersReducer,
   cars: carsListReducer,
-  selectedCar: selectedCarReducer,
-  token: tokenReducer,
   form: reduxForm
 });

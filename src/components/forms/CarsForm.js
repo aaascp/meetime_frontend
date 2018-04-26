@@ -1,6 +1,7 @@
 import React from "react";
 import { reduxForm, Field, change } from "redux-form";
 import CarFieldItem from "./CarFieldItem";
+import CarFieldSelect from "./CarFieldSelect";
 import carsFields from "./carsFields";
 
 class CarsForm extends React.Component {
@@ -16,17 +17,26 @@ class CarsForm extends React.Component {
 
   renderFields() {
     return carsFields.map(
-      ({ label, name, placeholder, disabled, hideOnNew, validations }) => {
+      ({
+        label,
+        name,
+        placeholder,
+        disabled,
+        hideOnNew,
+        validations,
+        isSelectField
+      }) => {
         return (
           <Field
             key={name}
-            component={CarFieldItem}
+            component={isSelectField ? CarFieldSelect : CarFieldItem}
             type="text"
             hide={!this.props.selectedCar && hideOnNew}
             label={label}
             validate={validations}
             disabled={disabled || false}
             placeholder={placeholder}
+            items={this.props.usersList}
             name={name}
           />
         );
