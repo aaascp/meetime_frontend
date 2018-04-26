@@ -1,18 +1,14 @@
 import React from "react";
-import { reduxForm, Field, change } from "redux-form";
+import { connect } from "react-redux";
+import { reduxForm, Field } from "redux-form";
 import CarFieldItem from "./CarFieldItem";
 import CarFieldSelect from "./CarFieldSelect";
 import carsFields from "./carsFields";
+import * as actions from "../../actions";
 
 class CarsForm extends React.Component {
-  componentDidUpdate(prevProps) {
-    const selectedCar = this.props.selectedCar;
-
-    if (selectedCar && prevProps.selectedCar !== selectedCar) {
-      carsFields.forEach(({ name }) => {
-        this.changeField(name, selectedCar[name]);
-      });
-    }
+  componentDidMount() {
+    this.props.fetchUsersList();
   }
 
   renderFields() {
@@ -31,7 +27,7 @@ class CarsForm extends React.Component {
             key={name}
             component={isSelectField ? CarFieldSelect : CarFieldItem}
             type="text"
-            hide={!this.props.selectedCar && hideOnNew}
+            hide={!this.props.isUpdate && hideOnNew}
             label={label}
             validate={validations}
             disabled={disabled || false}
@@ -45,28 +41,23 @@ class CarsForm extends React.Component {
   }
 
   handleSubmitForm = () => {
-    this.props.handleSubmitForm();
-    this.resetFields();
+    if (this.props.isUpdate) {
+      this.props.handleUpdateCar();
+    } else {
+      this.props.handleAddCar();
+    }
+    this.props.clearCar();
   };
 
   onClearClick = event => {
     event.preventDefault();
-    this.resetFields();
-    this.props.handleClearClick();
-  };
-
-  resetFields = () => {
-    carsFields.forEach(({ name }) => this.changeField(name, null));
-  };
-
-  changeField = (name, value) => {
-    this.props.dispatch(change("carsForm", name, value));
+    this.props.clearCar();
   };
 
   render() {
     return (
       <div>
-        <h1>{this.props.selectedCar ? "Atualizar" : "Novo"} Carro</h1>
+        <h1>{this.props.isUpdate ? "Atualizar" : "Novo"} Carro</h1>
         <form
           className="form"
           onSubmit={this.props.handleSubmit(this.handleSubmitForm)}
@@ -74,13 +65,13 @@ class CarsForm extends React.Component {
           {this.renderFields()}
 
           <div className="form__actions">
-            {this.props.selectedCar && (
+            {this.props.isUpdate && (
               <button className="button" onClick={this.onClearClick}>
                 Limpar
               </button>
             )}
             <button type="submit" className="button form__submit">
-              {this.props.selectedCar ? "Atualizar" : "Salvar"}
+              {this.props.isUpdate ? "Atualizar" : "Salvar"}
             </button>
           </div>
         </form>
@@ -89,6 +80,17 @@ class CarsForm extends React.Component {
   }
 }
 
-export default reduxForm({
-  form: "carsForm"
+const mapStateToProps = state => {
+  return {
+    usersList: state.usersList,
+    initialValues: state.selectedCar,
+    isUpdate: !!state.selectedCar
+  };
+};
+
+const CarsReduxForm = reduxForm({
+  form: "carsForm",
+  enableReinitialize: true
 })(CarsForm);
+
+export default connect(mapStateToProps, actions)(CarsReduxForm);

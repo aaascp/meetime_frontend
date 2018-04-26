@@ -1,4 +1,10 @@
-import { FETCH_CARS_LIST, FETCH_USERS_LIST } from "./types";
+import {
+  CAR_SELECT,
+  CAR_CLEAR,
+  FETCH_CARS_LIST,
+  FETCH_USERS_LIST
+} from "./types";
+
 import { PIPEDRIVE_API, BASE_API, fetchOptions } from "../utils/fetch";
 
 export const fetchUsersList = token => async dispatch => {
@@ -13,18 +19,21 @@ export const fetchUsersList = token => async dispatch => {
   dispatch({ type: FETCH_USERS_LIST, payload: usersList.data });
 };
 
-export const fetchCar = id => async () => {
+export const fetchCar = id => async dispatch => {
   const response = await fetch(`${BASE_API}/api/v1/cars/${id}`);
   const car = await response.json();
 
-  return car;
+  dispatch({ type: CAR_SELECT, payload: car });
+};
+
+export const clearCar = () => async dispatch => {
+  dispatch({ type: CAR_CLEAR });
 };
 
 export const fetchCarsList = () => async dispatch => {
   const response = await fetch(`${BASE_API}/api/v1/cars`);
   const carsList = await response.json();
 
-  console.log("INDEX", carsList);
   dispatch({ type: FETCH_CARS_LIST, payload: carsList });
 };
 
@@ -35,7 +44,6 @@ export const addCar = fields => async dispatch => {
   );
   const carsList = await response.json();
 
-  console.log("CREATE", carsList);
   dispatch({ type: FETCH_CARS_LIST, payload: carsList });
 };
 

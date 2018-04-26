@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import CarsListItem from "./CarsListItem";
 
 class CarsList extends React.Component {
@@ -13,7 +14,7 @@ class CarsList extends React.Component {
   render() {
     return (
       <div className="cars-list">
-        {this.props.cars.map(car => (
+        {this.props.carsList.map(car => (
           <CarsListItem
             itemClickHandler={this.onItemClick}
             itemClickDeleteHandler={this.itemClickDeleteHandler}
@@ -26,4 +27,10 @@ class CarsList extends React.Component {
   }
 }
 
-export default CarsList;
+const mapStateToProps = state => {
+  return {
+    carsList: state.carsList
+  };
+};
+
+export default connect(mapStateToProps)(CarsList);

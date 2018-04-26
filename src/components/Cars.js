@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { debounce } from "lodash";
 
 import CarsList from "./CarsList";
 // import SplitPane from "./SplitPane";
@@ -8,32 +9,39 @@ import CarsForm from "./forms/CarsForm";
 import * as actions from "../actions";
 
 class Cars extends React.Component {
-  state = { selectedCar: null };
-
   componentDidMount() {
+    const DEBOUNCE_TIME = 1500;
+    const DEBOUNCE_OPTIONS = { leading: true, trailing: false };
+
     this.props.fetchCarsList();
+
+    this.handleAddCar = debounce(
+      this.handleAddCar,
+      DEBOUNCE_TIME,
+      DEBOUNCE_OPTIONS
+    );
+
+    this.handleUpdateCar = debounce(
+      this.handleUpdateCar,
+      DEBOUNCE_TIME,
+      DEBOUNCE_OPTIONS
+    );
   }
 
-  handleSubmitForm = () => {
-    if (this.state.selectedCar) {
-      this.props.updateCar(this.props.carsForm.values);
-      this.setState({ selectedCar: null });
-    } else {
-      this.props.addCar(this.props.carsForm.values);
-    }
+  handleAddCar = () => {
+    this.props.addCar(this.props.carsForm.values);
   };
 
-  handleCarClick = async car => {
-    const selectedCar = await this.props.fetchCar(car);
-    this.setState({ selectedCar });
+  handleUpdateCar = () => {
+    this.props.updateCar(this.props.carsForm.values);
+  };
+
+  handleCarClick = car => {
+    this.props.fetchCar(car);
   };
 
   handleCarDeleteClick = car => {
     this.props.deleteCar(car);
-  };
-
-  handleClearClick = () => {
-    this.setState({ selectedCar: null });
   };
 
   render() {
@@ -43,14 +51,12 @@ class Cars extends React.Component {
           <CarsList
             handleCarClick={this.handleCarClick}
             handleCarDeleteClick={this.handleCarDeleteClick}
-            cars={this.props.cars}
           />
         </div>
         <div className="split-pane__right">
           <CarsForm
-            usersList={this.props.users}
-            handleSubmitForm={this.handleSubmitForm}
-            selectedCar={this.state.selectedCar}
+            handleAddCar={this.handleAddCar}
+            handleUpdateCar={this.handleUpdateCar}
             handleClearClick={this.handleClearClick}
           />
         </div>
@@ -61,8 +67,6 @@ class Cars extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    users: state.users,
-    cars: state.cars,
     carsForm: state.form.carsForm
   };
 }

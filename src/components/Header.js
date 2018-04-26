@@ -3,15 +3,21 @@ import { connect } from "react-redux";
 import { debounce } from "lodash";
 import * as actions from "../actions";
 
+const TOKEN_COOKIE = "TOKEN_COOKIE";
+
 class Header extends React.Component {
-  state = { token: undefined };
+  state = { token: localStorage.getItem(TOKEN_COOKIE) || null };
 
   componentDidMount() {
-    this.getUsersList = debounce(this.getUsersList, 1500);
+    const DEBOUNCE_TIME = 1500;
+    this.getUsersList = debounce(this.getUsersList, DEBOUNCE_TIME);
+
+    if (this.state.token) this.getUsersList(this.state.token);
   }
 
   getUsersList = token => {
     this.props.fetchUsersList(token);
+    localStorage.setItem(TOKEN_COOKIE, token);
   };
 
   onTokenChange = event => {
@@ -25,6 +31,7 @@ class Header extends React.Component {
         <div className="container">
           <div className="form__input">
             <input
+              value={this.state.token}
               type="text"
               placeholder="Token do pipedrive"
               className="form__input-value form__input-value--header"

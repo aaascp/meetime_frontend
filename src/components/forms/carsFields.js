@@ -1,5 +1,9 @@
 const required = value => (value ? undefined : "Deve ser preenchido");
 
+const requiredSelect = value => {
+  return value && value !== "0" ? undefined : "Deve ser preenchido";
+};
+
 const number = value =>
   value && isNaN(Number(value)) ? "Deve ser um número" : undefined;
 
@@ -31,14 +35,14 @@ export default [
     label: "Responsável",
     name: "userId",
     placeholder: "Usuários do Pipedrive",
-    validations: required,
+    validations: requiredSelect,
     isSelectField: true
   },
   {
     label: "Modelo",
     name: "model",
     placeholder: "Ex: Celta",
-    validation: required
+    validations: required
   },
   {
     label: "Ano",
