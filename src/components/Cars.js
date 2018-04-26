@@ -24,7 +24,7 @@ class Cars extends React.Component {
   };
 
   handleCarClick = async car => {
-    const selectedCar = await actions.fetchCar(car);
+    const selectedCar = await this.props.fetchCar(car);
     this.setState({ selectedCar });
   };
 
@@ -37,7 +37,6 @@ class Cars extends React.Component {
   };
 
   render() {
-    console.log("Andre ", this.props.users);
     return (
       <div className="container split-pane">
         <div className="split-pane__left">

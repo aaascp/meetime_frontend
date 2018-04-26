@@ -1,93 +1,60 @@
 import { FETCH_CARS_LIST, FETCH_USERS_LIST } from "./types";
-import fetchOptions from "../utils/fetchOptions";
+import { PIPEDRIVE_API, BASE_API, fetchOptions } from "../utils/fetch";
 
 export const fetchUsersList = token => async dispatch => {
   if (!token) return;
 
-  const result = await fetch(
-    `https://api.pipedrive.com/v1/persons?api_token=${token}`,
-    fetchOptions({ cors: true })
+  const response = await fetch(
+    `${PIPEDRIVE_API}/v1/persons?api_token=${token}`,
+    fetchOptions({})
   );
-  const usersList = await result.json();
+  const usersList = await response.json();
 
   dispatch({ type: FETCH_USERS_LIST, payload: usersList.data });
 };
 
-export const fetchCarsList = () => async dispatch => {
-  // const cars = await fetch('/api/v1/cars');
+export const fetchCar = id => async () => {
+  const response = await fetch(`${BASE_API}/api/v1/cars/${id}`);
+  const car = await response.json();
 
+  return car;
+};
+
+export const fetchCarsList = () => async dispatch => {
+  const response = await fetch(`${BASE_API}/api/v1/cars`);
+  const carsList = await response.json();
+
+  console.log("INDEX", carsList);
   dispatch({ type: FETCH_CARS_LIST, payload: carsList });
 };
 
-// export const fetchCar = id => async dispatch => {
-//   // const car = await fetch(`/api/v1/cars/${id}`);
-//   // dispatch({ type: FETCH_CAR, payload: carsList[id - 1] });
-//   return carsList[id - 1];
-// };
-
-export const fetchCar = async id => {
-  // const car = await fetch(`/api/v1/cars/${id}`);
-  // dispatch({ type: FETCH_CAR, payload: carsList[id - 1] });
-  return carsList[id - 1];
-};
-
 export const addCar = fields => async dispatch => {
-  // const car = await fetch("/api/v1/cars", fetchOptions('POST', fields));
-  const car = { ...fields, id: carsList.length + 1 };
-  carsList.push(car);
+  const response = await fetch(
+    `${BASE_API}/api/v1/cars`,
+    fetchOptions({ method: "POST", body: fields })
+  );
+  const carsList = await response.json();
 
+  console.log("CREATE", carsList);
   dispatch({ type: FETCH_CARS_LIST, payload: carsList });
 };
 
 export const updateCar = fields => async dispatch => {
-  // const car = await fetch(`/api/v1/cars/${fields.id}`, fechOptions('PATCH', fields));
-  const car = { ...fields, id: carsList.length + 1 };
-  carsList.splice(fields.id - 1, 1, car);
+  const response = await fetch(
+    `${BASE_API}/api/v1/cars/${fields.id}`,
+    fetchOptions({ method: "PATCH", body: fields })
+  );
+  const carsList = await response.json();
 
   dispatch({ type: FETCH_CARS_LIST, payload: carsList });
 };
 
 export const deleteCar = id => async dispatch => {
-  // const car = await fetch(`/api/v1/cars/${id}`, fechOptions('DELETE', fields));
-  carsList.splice(id - 1, 1);
+  const response = await fetch(
+    `${BASE_API}/api/v1/cars/${id}`,
+    fetchOptions({ method: "DELETE" })
+  );
+  const carsList = await response.json();
 
   dispatch({ type: FETCH_CARS_LIST, payload: carsList });
 };
-
-const carsList = [
-  {
-    id: 1,
-    user: "User 1",
-    model: "Palio",
-    year: 2009,
-    color: "branco"
-  },
-  {
-    id: 2,
-    user: "User 2",
-    model: "Sandero",
-    year: 2010,
-    color: "preto"
-  },
-  {
-    id: 3,
-    user: "User 3",
-    model: "Clio",
-    year: 2011,
-    color: "verde"
-  },
-  {
-    id: 4,
-    user: "User 4",
-    model: "Gol",
-    year: 2012,
-    color: "branco"
-  },
-  {
-    id: 5,
-    user: "User 5",
-    model: "Uno",
-    year: 2013,
-    color: "verde"
-  }
-];

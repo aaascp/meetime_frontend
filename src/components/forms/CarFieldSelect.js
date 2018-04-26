@@ -13,7 +13,7 @@ const CarFieldSelect = ({
     !hide && (
       <div className="form__field">
         <label className="form__label">{label}</label>
-        <select>
+        <select {...input}>
           <option value="" disabled defaultValue>
             {placeholder}
           </option>

@@ -23,6 +23,7 @@ class CarsListItem extends React.Component {
         {this.props.item.model}
         <button
           className="button button--inline"
+          data-id={this.props.item.id}
           onClick={this.onItemDeleteClick}
         >
           X

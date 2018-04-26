@@ -29,7 +29,7 @@ export default [
   { label: "ID", name: "id", disabled: true, hideOnNew: true },
   {
     label: "Responsável",
-    name: "user",
+    name: "userId",
     placeholder: "Usuários do Pipedrive",
     validations: required,
     isSelectField: true

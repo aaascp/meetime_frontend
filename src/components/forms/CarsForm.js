@@ -5,12 +5,12 @@ import CarFieldSelect from "./CarFieldSelect";
 import carsFields from "./carsFields";
 
 class CarsForm extends React.Component {
-  componentDidUpdate() {
-    if (this.props.selectedCar) {
+  componentDidUpdate(prevProps) {
+    const selectedCar = this.props.selectedCar;
+
+    if (selectedCar && prevProps.selectedCar !== selectedCar) {
       carsFields.forEach(({ name }) => {
-        if (this.props.selectedCar.hasOwnProperty(name)) {
-          this.changeField(name, this.props.selectedCar[name]);
-        }
+        this.changeField(name, selectedCar[name]);
       });
     }
   }
