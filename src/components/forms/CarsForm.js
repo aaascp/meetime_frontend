@@ -82,7 +82,7 @@ class CarsForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    usersList: state.usersList,
+    usersList: state.usersList.value,
     initialValues: state.selectedCar,
     isUpdate: !!state.selectedCar
   };

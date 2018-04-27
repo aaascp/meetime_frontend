@@ -1,6 +1,10 @@
 import { pipedriveApiCall } from "../fetch";
 
-export const fetchUsersList = token => {
+export const fetchUsersList = async token => {
   if (!token) return;
-  return pipedriveApiCall({ path: `/v1/persons?api_token=${token}` });
+  const { error, data } = await pipedriveApiCall({
+    path: `/v1/persons?api_token=${token}`
+  });
+
+  return { error, data };
 };

@@ -4,11 +4,11 @@ import handleError from "./errorHandler";
 const BASE_API = "http://localhost:9000/api";
 const PIPEDRIVE_API = "https://api.pipedrive.com";
 
-const fetchOptions = ({ method = "GET", data, cors = true }) => {
+export const fetchOptions = ({ method = "GET", data, cors = true }) => {
   const options = {
     method: method,
     mode: cors ? "cors" : "same-origin",
-    responseType: "application/json"
+    responseType: "json"
   };
 
   if (data) options.data = data;
@@ -16,21 +16,25 @@ const fetchOptions = ({ method = "GET", data, cors = true }) => {
   return options;
 };
 
-const pipedriveApiCall = ({ path, options }) => {
-  return apiCall({ url: `${PIPEDRIVE_API}${path}`, options });
+export const pipedriveApiCall = async ({ path, options }) => {
+  const { error, data } = await apiCall({
+    url: `${PIPEDRIVE_API}${path}`,
+    options
+  });
+  return { error, data: data.data };
 };
 
-const baseApiCall = ({ path, options }) => {
-  return apiCall({ url: `${BASE_API}${path}`, options });
+export const baseApiCall = async ({ path, options }) => {
+  const { error, data } = await apiCall({ url: `${BASE_API}${path}`, options });
+  return { error, data };
 };
 
 const apiCall = async ({ url, options = fetchOptions }) => {
   try {
     const response = await axios({ url, ...options });
-    console.log("Aqui0", response.data);
-    return response.data;
+    return { data: response.data };
   } catch (error) {
     handleError(error);
+    return { error: error.data.data };
   }
 };
-export { pipedriveApiCall, baseApiCall, fetchOptions };

@@ -5,9 +5,8 @@ const Status = {
 };
 
 export default error => {
-  console.log("Aqui1", error);
-  if (error.status === Status.UNPROCESSABLE_ENTITY) {
-    actions.unprocessableEntity(error);
+  if (error.response.status === Status.UNPROCESSABLE_ENTITY) {
+    actions.unprocessableEntity(error.response.data);
   } else {
     throw error;
   }
