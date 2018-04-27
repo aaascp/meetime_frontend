@@ -1,19 +1,17 @@
+import axios from "axios";
 import handleError from "./errorHandler";
 
-const BASE_API = "http://localhost:9000";
+const BASE_API = "http://localhost:9000/api";
 const PIPEDRIVE_API = "https://api.pipedrive.com";
 
-const fetchOptions = ({ method = "GET", body, cors = true }) => {
+const fetchOptions = ({ method = "GET", data, cors = true }) => {
   const options = {
     method: method,
     mode: cors ? "cors" : "same-origin",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
-    }
+    responseType: "application/json"
   };
 
-  if (body) options.body = JSON.stringify(body);
+  if (data) options.data = data;
 
   return options;
 };
@@ -28,12 +26,9 @@ const baseApiCall = ({ path, options }) => {
 
 const apiCall = async ({ url, options = fetchOptions }) => {
   try {
-    const response = await fetch(url, options);
-
-    if (!response.ok) {
-      throw Error(response.statusText);
-    }
-    return await response.json();
+    const response = await axios({ url, ...options });
+    console.log("Aqui0", response.data);
+    return response.data;
   } catch (error) {
     handleError(error);
   }

@@ -6,5 +6,5 @@ export const fetchUsersList = token => async dispatch => {
   if (!token) return;
   const response = await api.fetchUsersList(token);
 
-  dispatch({ type: FETCH_USERS_LIST, payload: response.data });
+  if (response) dispatch({ type: FETCH_USERS_LIST, payload: response.data });
 };

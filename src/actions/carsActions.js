@@ -8,25 +8,25 @@ export const clearCar = () => dispatch => {
 
 export const fetchCar = id => async dispatch => {
   const response = await api.fetchCar(id);
-  dispatch({ type: CAR_SELECT, payload: response });
+  if (response) dispatch({ type: CAR_SELECT, payload: response });
 };
 
 export const fetchCarsList = () => async dispatch => {
   const response = await api.fetchCarsList();
-  dispatch({ type: FETCH_CARS_LIST, payload: response });
+  if (response) dispatch({ type: FETCH_CARS_LIST, payload: response });
 };
 
 export const addCar = fields => async dispatch => {
   const response = await api.addCar(fields);
-  dispatch({ type: FETCH_CARS_LIST, payload: response });
+  if (response) dispatch({ type: FETCH_CARS_LIST, payload: response });
 };
 
 export const updateCar = fields => async dispatch => {
   const response = await api.updateCar(fields);
-  dispatch({ type: FETCH_CARS_LIST, payload: response });
+  if (response) dispatch({ type: FETCH_CARS_LIST, payload: response });
 };
 
 export const deleteCar = id => async dispatch => {
   const response = await api.deleteCar(id);
-  dispatch({ type: FETCH_CARS_LIST, payload: response });
+  if (response) dispatch({ type: FETCH_CARS_LIST, payload: response });
 };
