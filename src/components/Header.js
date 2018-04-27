@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { debounce } from "lodash";
-import * as actions from "../actions";
+import { actions } from "../actions";
 
 const TOKEN_COOKIE = "TOKEN_COOKIE";
 

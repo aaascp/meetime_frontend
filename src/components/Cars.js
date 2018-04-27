@@ -6,7 +6,7 @@ import CarsList from "./CarsList";
 // import SplitPane from "./SplitPane";
 import CarsForm from "./forms/CarsForm";
 
-import * as actions from "../actions";
+import { actions } from "../actions";
 
 class Cars extends React.Component {
   componentDidMount() {
