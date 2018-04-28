@@ -1,7 +1,7 @@
 // import SplitPane from "./SplitPane";
 import React from "react";
 import CarsList from "./CarsList";
-import CarsForm from "./forms/CarsForm";
+import CarsForm from "./forms/cars/CarsForm";
 
 class Cars extends React.Component {
   render() {

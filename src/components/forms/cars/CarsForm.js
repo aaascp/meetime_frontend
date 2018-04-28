@@ -4,7 +4,7 @@ import { reduxForm, Field } from "redux-form";
 import CarFieldItem from "./CarFieldItem";
 import CarFieldSelect from "./CarFieldSelect";
 import carsFields from "./carsFields";
-import { actions } from "../../actions";
+import { actions } from "../../../actions";
 import { debounce } from "lodash";
 
 class CarsForm extends React.Component {
