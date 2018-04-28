@@ -1,4 +1,4 @@
-import { CAR_SELECT, CAR_CLEAR, CARS_LIST } from "./types";
+import { CAR_SELECT, CAR_CLEAR, CARS_LIST, CAR_SELECT_ERROR } from "./types";
 
 import * as api from "../api/endpoints/carsEndpoint";
 
@@ -18,12 +18,20 @@ export const fetchCarsList = () => async dispatch => {
 
 export const addCar = fields => async dispatch => {
   const { error, data } = await api.addCar(fields);
-  if (!error) dispatch({ type: CARS_LIST, payload: data });
+  if (error) {
+    dispatch({ type: CAR_SELECT_ERROR, payload: error });
+  } else {
+    dispatch({ type: CARS_LIST, payload: data });
+  }
 };
 
 export const updateCar = fields => async dispatch => {
   const { error, data } = await api.updateCar(fields);
-  if (!error) dispatch({ type: CARS_LIST, payload: data });
+  if (error) {
+    dispatch({ type: CAR_SELECT_ERROR, payload: error });
+  } else {
+    dispatch({ type: CARS_LIST, payload: data });
+  }
 };
 
 export const deleteCar = id => async dispatch => {

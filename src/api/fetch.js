@@ -1,5 +1,4 @@
 import axios from "axios";
-import handleError from "./errorHandler";
 
 const BASE_API = "http://localhost:9000/api";
 const PIPEDRIVE_API = "https://api.pipedrive.com";
@@ -39,7 +38,6 @@ const apiCall = async ({ url, options = fetchOptions }) => {
     const response = await axios({ url, ...options });
     return { data: response.data };
   } catch (error) {
-    handleError(error);
-    return { error };
+    return { error: error.response };
   }
 };

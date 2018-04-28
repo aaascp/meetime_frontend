@@ -1,13 +1,13 @@
 import React from "react";
 
 const CarFieldItem = ({
+  selectedError,
+  properties,
   input,
-  label,
-  placeholder,
-  disabled,
   hide,
   meta: { error, touched }
 }) => {
+  const { placeholder, disabled, label } = properties;
   return (
     !hide && (
       <div className="form__field">
@@ -26,7 +26,9 @@ const CarFieldItem = ({
             disabled={disabled}
           />
         </div>
-        <div className="form__error">{touched && error}</div>
+        <div className="form__error">
+          {(selectedError && error) || (touched && error)}
+        </div>
       </div>
     )
   );

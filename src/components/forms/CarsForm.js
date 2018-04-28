@@ -5,46 +5,35 @@ import CarFieldItem from "./CarFieldItem";
 import CarFieldSelect from "./CarFieldSelect";
 import carsFields from "./carsFields";
 import { actions } from "../../actions";
+import { debounce } from "lodash";
 
 class CarsForm extends React.Component {
   componentDidMount() {
-    this.props.fetchUsersList();
-  }
+    const DEBOUNCE_TIME = 1500;
+    const DEBOUNCE_OPTIONS = { leading: true, trailing: false };
 
-  renderFields() {
-    return carsFields.map(
-      ({
-        label,
-        name,
-        placeholder,
-        disabled,
-        hideOnNew,
-        validations,
-        isSelectField
-      }) => {
-        return (
-          <Field
-            key={name}
-            component={isSelectField ? CarFieldSelect : CarFieldItem}
-            type="text"
-            hide={!this.props.isUpdate && hideOnNew}
-            label={label}
-            validate={validations}
-            disabled={disabled || false}
-            placeholder={placeholder}
-            items={this.props.usersList}
-            name={name}
-          />
-        );
-      }
+    this.props.fetchUsersList();
+
+    this.handleSubmitForm = debounce(
+      this.handleSubmitForm,
+      DEBOUNCE_TIME,
+      DEBOUNCE_OPTIONS
     );
   }
 
+  handleUpdateCar = async () => {
+    this.props.updateCar(this.props.carsForm.values);
+  };
+
+  handleAddCar = () => {
+    this.props.addCar(this.props.carsForm.values);
+  };
+
   handleSubmitForm = () => {
     if (this.props.isUpdate) {
-      this.props.handleUpdateCar();
+      this.handleUpdateCar();
     } else {
-      this.props.handleAddCar();
+      this.handleAddCar();
     }
     this.props.clearCar();
   };
@@ -53,6 +42,25 @@ class CarsForm extends React.Component {
     event.preventDefault();
     this.props.clearCar();
   };
+
+  renderFields() {
+    return carsFields.map(properties => {
+      const { name, validations, hideOnNew, isSelectField } = properties;
+      return (
+        <Field
+          selectedError={this.props.selectedError}
+          properties={properties}
+          key={name}
+          component={isSelectField ? CarFieldSelect : CarFieldItem}
+          type="text"
+          hide={!this.props.isUpdate && hideOnNew}
+          validate={validations}
+          items={this.props.usersList}
+          name={name}
+        />
+      );
+    });
+  }
 
   render() {
     return (
@@ -82,9 +90,11 @@ class CarsForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    carsForm: state.form.carsForm,
     usersList: state.usersList.value,
-    initialValues: state.selectedCar,
-    isUpdate: !!state.selectedCar
+    initialValues: state.selectedCar.value,
+    isUpdate: !!state.selectedCar.value,
+    selectedError: state.selectedCar.error
   };
 };
 

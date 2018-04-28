@@ -15,7 +15,12 @@ export const addCar = async fields => {
     path: "/v1/cars",
     options: fetchOptions({ method: "POST", data: fields })
   });
-  return { error, data };
+
+  if (error) {
+    return { error: JSON.parse(error.config.data) };
+  } else {
+    return { data };
+  }
 };
 
 export const updateCar = async fields => {
@@ -23,7 +28,12 @@ export const updateCar = async fields => {
     path: `/v1/cars/${fields.id}`,
     options: fetchOptions({ method: "PATCH", data: fields })
   });
-  return { error, data };
+
+  if (error) {
+    return { error: JSON.parse(error.config.data) };
+  } else {
+    return { data };
+  }
 };
 
 export const deleteCar = async id => {
