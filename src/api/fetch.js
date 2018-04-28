@@ -4,10 +4,10 @@ import handleError from "./errorHandler";
 const BASE_API = "http://localhost:9000/api";
 const PIPEDRIVE_API = "https://api.pipedrive.com";
 
-export const fetchOptions = ({ method = "GET", data, cors = true }) => {
+export const fetchOptions = ({ method = "GET", data, mode = "cors" }) => {
   const options = {
     method: method,
-    mode: cors ? "cors" : "same-origin",
+    mode,
     responseType: "json"
   };
 
@@ -21,7 +21,12 @@ export const pipedriveApiCall = async ({ path, options }) => {
     url: `${PIPEDRIVE_API}${path}`,
     options
   });
-  return { error, data: data.data };
+
+  if (error) {
+    return { error };
+  } else {
+    return { data: data.data };
+  }
 };
 
 export const baseApiCall = async ({ path, options }) => {
@@ -35,6 +40,6 @@ const apiCall = async ({ url, options = fetchOptions }) => {
     return { data: response.data };
   } catch (error) {
     handleError(error);
-    return { error: error.data.data };
+    return { error };
   }
 };

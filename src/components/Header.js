@@ -22,6 +22,7 @@ class Header extends React.Component {
 
   onTokenChange = event => {
     const token = event.target.value;
+    this.setState({ token });
     this.getUsersList(token);
   };
 
@@ -29,19 +30,29 @@ class Header extends React.Component {
     return (
       <div className="header">
         <div className="container">
-          <div className="form__input">
-            <input
-              value={this.state.token}
-              type="text"
-              placeholder="Token do pipedrive"
-              className="form__input-value form__input-value--header"
-              onChange={this.onTokenChange}
-            />
+          <div className="form__field">
+            <div className="form__input">
+              <input
+                value={this.state.token}
+                type="text"
+                placeholder="Token do pipedrive"
+                className="form__input-value form__input-value--header"
+                onChange={this.onTokenChange}
+              />
+            </div>
+            <div className="form__error">
+              {this.props.tokenUnauthorized ? "Token Inválido" : ""}
+            </div>
           </div>
         </div>
       </div>
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    tokenUnauthorized: state.usersList.unauthorized
+  };
+};
 
-export default connect(null, actions)(Header);
+export default connect(mapStateToProps, actions)(Header);
