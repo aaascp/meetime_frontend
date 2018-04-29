@@ -1,32 +1,38 @@
 import React from "react";
 import { connect } from "react-redux";
 import { actions } from "../actions";
-import CarsListItem from "./CarsListItem";
+import PaginatedList from "./list/PaginatedList";
 
 class CarsList extends React.Component {
   componentDidMount() {
     this.props.fetchCarsList();
   }
 
-  onItemClick = item => {
-    this.props.fetchCar(item);
+  itemClickHandler = ({ id, index }) => {
+    this.props.fetchCar({ id, index });
   };
 
-  itemClickDeleteHandler = item => {
-    this.props.deleteCar(item);
+  deleteClickHandler = ({ id, index }) => {
+    this.props.deleteCar({ id, index });
+  };
+
+  nextPageHandler = item => {
+    console.log(this.props.nextUrl);
+    this.props.fetchCarsList(this.props.nextUrl);
   };
 
   render() {
     return (
       <div className="cars-list">
-        {this.props.carsList.map(car => (
-          <CarsListItem
-            itemClickHandler={this.onItemClick}
-            itemClickDeleteHandler={this.itemClickDeleteHandler}
-            item={car}
-            key={car.id}
-          />
-        ))}
+        <PaginatedList
+          itemClickHandler={this.itemClickHandler}
+          deleteClickHandler={this.deleteClickHandler}
+          nextPageHandler={this.nextPageHandler}
+          items={this.props.carsList}
+          links={this.props.links}
+          limit={this.props.limit}
+          totalCount={this.props.totalCount}
+        />
       </div>
     );
   }
@@ -34,7 +40,9 @@ class CarsList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    carsList: state.carsList
+    carsList: state.carsList.value,
+    nextUrl: state.carsList.links ? state.carsList.links.next : null,
+    totalCount: state.carsList.totalCount
   };
 };
 

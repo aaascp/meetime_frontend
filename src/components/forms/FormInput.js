@@ -1,6 +1,6 @@
 import React from "react";
 
-const CarFieldItem = ({
+const FormInput = ({
   selectedError,
   properties,
   input,
@@ -34,4 +34,4 @@ const CarFieldItem = ({
   );
 };
 
-export default CarFieldItem;
+export default FormInput;

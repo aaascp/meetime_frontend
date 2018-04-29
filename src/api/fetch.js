@@ -16,7 +16,7 @@ export const fetchOptions = ({ method = "GET", data, mode = "cors" }) => {
 };
 
 export const pipedriveApiCall = async ({ path, options }) => {
-  const { error, data } = await apiCall({
+  const { error, response } = await apiCall({
     url: `${PIPEDRIVE_API}${path}`,
     options
   });
@@ -24,20 +24,28 @@ export const pipedriveApiCall = async ({ path, options }) => {
   if (error) {
     return { error };
   } else {
-    return { data: data.data };
+    return { error, data: response.data.data };
   }
 };
 
-export const baseApiCall = async ({ path, options }) => {
-  const { error, data } = await apiCall({ url: `${BASE_API}${path}`, options });
-  return { error, data };
+export const baseApiCall = async ({ url, path, options }) => {
+  const { error, response } = await apiCall({
+    url: url || `${BASE_API}${path}`,
+    options
+  });
+
+  if (error) {
+    return { error };
+  } else {
+    return { data: response.data, headers: response.headers };
+  }
 };
 
 const apiCall = async ({ url, options = fetchOptions }) => {
   try {
     const response = await axios({ url, ...options });
-    return { data: response.data };
+    return { response };
   } catch (error) {
-    return { error: error.response };
+    return { error };
   }
 };

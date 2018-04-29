@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
-import CarFieldItem from "./CarFieldItem";
-import CarFieldSelect from "./CarFieldSelect";
+import FormInput from "../FormInput";
+import FormSelect from "../FormSelect";
 import carsFields from "./carsFields";
 import { actions } from "../../../actions";
 import { debounce } from "lodash";
@@ -22,7 +22,10 @@ class CarsForm extends React.Component {
   }
 
   handleUpdateCar = async () => {
-    this.props.updateCar(this.props.carsForm.values);
+    this.props.updateCar({
+      fields: this.props.carsForm.values,
+      index: this.props.selectedCarIndex
+    });
   };
 
   handleAddCar = () => {
@@ -51,7 +54,7 @@ class CarsForm extends React.Component {
           selectedError={this.props.selectedError}
           properties={properties}
           key={name}
-          component={isSelectField ? CarFieldSelect : CarFieldItem}
+          component={isSelectField ? FormSelect : FormInput}
           type="text"
           hide={!this.props.isUpdate && hideOnNew}
           validate={validations}
@@ -94,7 +97,8 @@ const mapStateToProps = state => {
     usersList: state.usersList.value,
     initialValues: state.selectedCar.value,
     isUpdate: !!state.selectedCar.value,
-    selectedError: state.selectedCar.error
+    selectedError: state.selectedCar.error,
+    selectedCarIndex: state.selectedCar.index
   };
 };
 
