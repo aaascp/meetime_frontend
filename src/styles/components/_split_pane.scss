@@ -4,13 +4,12 @@
   background-color: $white;
   border: 1px solid darken($gray-light, 10%);
   display: flex;
-  justify-content: space-around;
   margin-top: $xxl-spacing;
   padding: $s-spacing;
+  height: 500px;
 }
 
 .split-pane__left {
-  // background-color: green;
   margin-right: $s-spacing;
   width: $max-width / 2;
 }

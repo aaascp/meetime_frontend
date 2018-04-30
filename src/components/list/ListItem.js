@@ -18,12 +18,13 @@ class ListItem extends React.Component {
   render() {
     return (
       <li
-        className="cars-list__item"
+        className="list__item"
         onClick={this.onItemClick}
         data-id={this.props.item.id}
         data-index={this.props.index}
       >
-        {this.props.item.model}
+        {this.props.index + 1}.
+        <div className="list__item-content">{this.props.item.model}</div>
         <button
           className="button button--inline"
           data-id={this.props.item.id}

@@ -16,7 +16,7 @@ class PaginatedList extends React.Component {
 
   render() {
     return (
-      <div className="cars-list">
+      <div className="list">
         {this.props.items.map((item, index) => (
           <ListItem
             itemClickHandler={this.onItemClick}
@@ -27,8 +27,11 @@ class PaginatedList extends React.Component {
           />
         ))}
         {this.props.totalCount - this.props.items.length > 0 && (
-          <li className="cars-list__item" onClick={this.onNextPageClick}>
-            +
+          <li
+            className="list__item list__item--action"
+            onClick={this.onNextPageClick}
+          >
+            <span>Carregar mais...</span>
           </li>
         )}
       </div>

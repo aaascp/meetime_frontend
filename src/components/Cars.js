@@ -7,10 +7,11 @@ class Cars extends React.Component {
   render() {
     return (
       <div className="container split-pane">
-        <div className="split-pane__left">
+        <div className="container split-pane__left">
           <CarsList />
         </div>
-        <div className="split-pane__right">
+
+        <div className="container split-pane__right">
           <CarsForm />
         </div>
       </div>

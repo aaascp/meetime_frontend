@@ -1,0 +1,53 @@
+@import "../base/settings";
+
+.list {
+  border: 1px solid $gray;
+  display: flex;
+  max-width: 100%;
+  flex-direction: column;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.list__item {
+  &:hover {
+    background-color: $gray-light;
+  }
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+
+  align-items: center;
+  border-bottom: 1px solid $gray;
+  display: flex;
+  list-style: none;
+  padding: $s-spacing;
+}
+
+.list__item .button {
+  color: $gray-charcoal;
+}
+
+.list__item-content {
+  flex-grow: 1;
+  padding: 0 $l-spacing;
+  word-break: break-all;
+}
+
+.list__item--action {
+  background-color: $green;
+  color: $white;
+  font-size: $xs-text;
+  font-style: italic;
+  flex-grow: 1;
+
+  &:hover {
+    background-color: $green;
+    cursor: pointer;
+  }
+
+  & span {
+    margin: 0 auto;
+  }
+}

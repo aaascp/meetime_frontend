@@ -23,17 +23,15 @@ class CarsList extends React.Component {
 
   render() {
     return (
-      <div className="cars-list">
-        <PaginatedList
-          itemClickHandler={this.itemClickHandler}
-          deleteClickHandler={this.deleteClickHandler}
-          nextPageHandler={this.nextPageHandler}
-          items={this.props.carsList}
-          links={this.props.links}
-          limit={this.props.limit}
-          totalCount={this.props.totalCount}
-        />
-      </div>
+      <PaginatedList
+        itemClickHandler={this.itemClickHandler}
+        deleteClickHandler={this.deleteClickHandler}
+        nextPageHandler={this.nextPageHandler}
+        items={this.props.carsList}
+        links={this.props.links}
+        limit={this.props.limit}
+        totalCount={this.props.totalCount}
+      />
     );
   }
 }
