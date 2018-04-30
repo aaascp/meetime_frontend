@@ -1,9 +1,9 @@
 import React from "react";
 
 const LoadMoreItem = ({ totalCount, itemsSize, onClick }) => {
-  const isEmpty = totalCount - itemsSize === 0;
+  const hasMoreItems = totalCount - itemsSize > 0;
   return (
-    isEmpty && (
+    hasMoreItems && (
       <div>
         {" "}
         <li className="list__item list__item--action" onClick={onClick}>

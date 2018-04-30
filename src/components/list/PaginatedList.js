@@ -26,7 +26,7 @@ class PaginatedList extends React.Component {
   };
 
   renderEmptyList = () => {
-    return <div className="list--empty" />;
+    return <div className="list--empty">Lista vazia</div>;
   };
 
   renderListItems = () => {
@@ -50,8 +50,8 @@ class PaginatedList extends React.Component {
         {this.renderList()}
         <LoadMoreItem
           totalCount={this.props.totalCount}
-          itemsSize={this.props.items.lengt}
-          onCLick={this.onNextPageClick}
+          itemsSize={this.props.items.length}
+          onClick={this.onNextPageClick}
         />
       </div>
     );

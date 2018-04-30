@@ -9,6 +9,14 @@
   overflow-y: auto;
 }
 
+.list--empty {
+  align-items: center;
+  display: flex;
+  font-size: $xl-text;
+  height: $main-container-height;
+  justify-content: center;
+}
+
 .list__item {
   &:hover {
     background-color: $gray-light;
