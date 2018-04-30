@@ -11,7 +11,8 @@ class ListItem extends React.Component {
     event.stopPropagation();
     const id = event.target.dataset.id;
     const index = event.target.dataset.index;
-    this.props.deleteClickHandler({ id, index });
+    const name = event.target.dataset.name;
+    this.props.deleteClickHandler({ id, index, name });
   };
 
   render() {
@@ -28,6 +29,7 @@ class ListItem extends React.Component {
           className="button button--inline"
           data-id={this.props.item.id}
           data-index={this.props.index}
+          data-name={this.props.name}
           onClick={this.onDeleteClick}
         >
           X

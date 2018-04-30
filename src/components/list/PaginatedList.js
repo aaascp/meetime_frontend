@@ -6,8 +6,10 @@ class PaginatedList extends React.Component {
     this.props.itemClickHandler({ id, index });
   };
 
-  onDeleteClick = ({ id, index }) => {
-    this.props.deleteClickHandler({ id, index });
+  onDeleteClick = ({ id, index, name }) => {
+    if (window.confirm(`Deseja excluir o item: ${name}`)) {
+      this.props.deleteClickHandler({ id, index });
+    }
   };
 
   onNextPageClick = () => {
@@ -22,6 +24,7 @@ class PaginatedList extends React.Component {
             itemClickHandler={this.onItemClick}
             deleteClickHandler={this.onDeleteClick}
             item={item}
+            name={item[this.props.itemName]}
             index={index}
             key={item.id}
           />

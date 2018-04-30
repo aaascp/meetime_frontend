@@ -30,6 +30,7 @@ class CarsList extends React.Component {
         items={this.props.carsList}
         links={this.props.links}
         limit={this.props.limit}
+        itemName={"model"}
         onClick={this.props.onClick}
         totalCount={this.props.totalCount}
       />
