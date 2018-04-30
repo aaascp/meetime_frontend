@@ -1,12 +1,12 @@
 @import "../base/settings";
 
 .split-pane {
-  align-items: center;
+  // align-items: center;
   background-color: $white;
   border: 1px solid darken($gray-light, 10%);
   display: flex;
   padding: $s-spacing;
-  height: $main-container-height-mobile;
+  height: 100%;
 
   @media (min-width: $desktop-breakpoint) {
     height: $main-container-height;
