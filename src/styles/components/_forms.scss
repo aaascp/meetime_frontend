@@ -16,7 +16,13 @@
 
 .form__field {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media (min-width: $desktop-breakpoint) {
+    flex-direction: row;
+    align-items: center;
+  }
 }
 
 .form__input {
@@ -59,9 +65,20 @@
 
 .form__actions {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+
+  @media (min-width: $small-breakpoint) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 .form__submit {
-  margin-left: auto;
+  margin-left: 0;
+  margin-top: $s-spacing;
+
+  @media (min-width: $small-breakpoint) {
+    margin-left: auto;
+    margin-top: 0;
+  }
 }

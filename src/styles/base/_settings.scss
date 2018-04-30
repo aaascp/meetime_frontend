@@ -8,7 +8,7 @@ $red: red;
 
 //Border
 $s-border: 4px;
-$-border: 16px;
+$l-border: 16px;
 
 //Spacings
 $xxs-spacing: 4px;
@@ -34,8 +34,9 @@ $primary-button-height: 48px;
 
 //container sizes
 $main-container-height: 500px;
-$main-container-height-mobile: 350px;
+$main-container-height-mobile: 700px;
 
 //Breakpoints
 $desktop-breakpoint: 960px;
+$small-breakpoint: 560px;
 $max-width: 1200px;
