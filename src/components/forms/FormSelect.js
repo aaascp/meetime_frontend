@@ -25,7 +25,7 @@ const FormSelect = ({
               </option>
             ))}
           </select>
-          <div className="form__error">
+          <div className="form__info form__info--error">
             {(selectedError && error) || (touched && error)}
           </div>
         </div>

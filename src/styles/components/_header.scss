@@ -4,10 +4,12 @@
   background-color: $gray-charcoal;
 }
 
-.form__input--header {
-  // border-bottom: 0.3rem solid darken(blue, 10%);
+.form__input-value--header {
+  font-size: $l-text;
 }
 
-.form__input-value--header {
-  font-size: $xl-text;
+.form__info--header {
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 0;
 }

@@ -26,6 +26,24 @@ class Header extends React.Component {
     this.getUsersList(token);
   };
 
+  getInfoStyle = () => {
+    if (this.props.usersListSize) {
+      return " form__info--success";
+    } else if (this.props.tokenUnauthorized) {
+      return " form__info--error";
+    }
+    return "";
+  };
+
+  getInfoContent = () => {
+    if (this.props.usersListSize > 0) {
+      return "Token Válido";
+    } else if (this.props.tokenUnauthorized) {
+      return "Token Inválido";
+    }
+    return "";
+  };
+
   render() {
     return (
       <div className="header">
@@ -39,9 +57,13 @@ class Header extends React.Component {
                 className="form__input-value form__input-value--header"
                 onChange={this.onTokenChange}
               />
-            </div>
-            <div className="form__error">
-              {this.props.tokenUnauthorized ? "Token Inválido" : ""}
+              <div
+                className={
+                  "form__info form__info--header" + this.getInfoStyle()
+                }
+              >
+                {this.getInfoContent()}
+              </div>
             </div>
           </div>
         </div>
@@ -51,7 +73,8 @@ class Header extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    tokenUnauthorized: state.usersList.unauthorized
+    tokenUnauthorized: state.usersList.unauthorized,
+    usersListSize: state.usersList.value.length
   };
 };
 

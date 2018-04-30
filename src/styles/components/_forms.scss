@@ -17,11 +17,9 @@
 .form__field {
   display: flex;
   align-items: center;
-  // padding: $xs-spacing $s-spacing;
 }
 
 .form__input {
-  background-color: $white;
   display: flex;
   flex-direction: column;
   padding: $xs-spacing 0;
@@ -29,7 +27,7 @@
 }
 
 .form__input-value {
-  background: transparent;
+  background: $white;
   border: 1px solid darken($gray-light, 10%);
   color: $gray-charcoal;
   padding: $xs-spacing $s-spacing;
@@ -40,12 +38,23 @@
 }
 
 .form__input--error {
-  border-color: $red;
+  border: 1px solid $red;
 }
 
-.form__error {
-  color: $red;
+.form__input--success {
+  border: 1px solid $green;
+}
+
+.form__info {
   padding: $xs-spacing;
+}
+
+.form__info--success {
+  color: $green;
+}
+
+.form__info--error {
+  color: $red;
 }
 
 .form__actions {

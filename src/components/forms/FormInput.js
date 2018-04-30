@@ -13,19 +13,18 @@ const FormInput = ({
       <div className="form__field">
         <label className="form__label">{label}</label>
         <div
-          className={
-            "form__input" +
-            (touched && error ? " form__input--error" : "") +
-            (disabled ? " form__input--disabled" : "")
-          }
+          className={"form__input" + (disabled ? " form__input--disabled" : "")}
         >
           <input
-            className="form__input-value"
+            className={
+              "form__input-value" +
+              (touched && error ? " form__input--error" : "")
+            }
             {...input}
             placeholder={placeholder}
             disabled={disabled}
           />
-          <div className="form__error">
+          <div className="form__info form__info--error">
             {(selectedError && error) || (touched && error)}
           </div>
         </div>
