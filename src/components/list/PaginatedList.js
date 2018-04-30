@@ -1,5 +1,6 @@
 import React from "react";
 import ListItem from "./ListItem";
+import LoadMoreItem from "./LoadMoreItem";
 
 class PaginatedList extends React.Component {
   onItemClick = ({ id, index }) => {
@@ -16,30 +17,63 @@ class PaginatedList extends React.Component {
     this.props.nextPageHandler();
   };
 
+  renderList = () => {
+    if (this.props.items.length === 0) {
+      return this.renderEmptyList();
+    } else {
+      return this.renderListItems();
+    }
+  };
+
+  renderEmptyList = () => {
+    return <div className="list--empty" />;
+  };
+
+  renderListItems = () => {
+    return this.props.items.map((item, index) => {
+      return (
+        <ListItem
+          itemClickHandler={this.onItemClick}
+          deleteClickHandler={this.onDeleteClick}
+          item={item}
+          name={item[this.props.itemName]}
+          index={index}
+          key={item.id}
+        />
+      );
+    });
+  };
+
   render() {
     return (
       <div className="list">
-        {this.props.items.map((item, index) => (
-          <ListItem
-            itemClickHandler={this.onItemClick}
-            deleteClickHandler={this.onDeleteClick}
-            item={item}
-            name={item[this.props.itemName]}
-            index={index}
-            key={item.id}
-          />
-        ))}
-        {this.props.totalCount - this.props.items.length > 0 && (
-          <li
-            className="list__item list__item--action"
-            onClick={this.onNextPageClick}
-          >
-            <span>Carregar mais...</span>
-          </li>
-        )}
+        {this.renderList()}
+        <LoadMoreItem
+          totalCount={this.props.totalCount}
+          itemsSize={this.props.items.lengt}
+          onCLick={this.onNextPageClick}
+        />
       </div>
     );
   }
 }
+
+// <div className="list">
+//   this.props.items.map((item, index) => (
+//   <ListItem
+//     itemClickHandler={this.onItemClick}
+//     deleteClickHandler={this.onDeleteClick}
+//     item={item}
+//     name={item[this.props.itemName]}
+//     index={index}
+//     key={item.id}
+//   />
+//   <LoadMoreItem
+//   totalCount={this.props.totalCount}
+//    itemsSize={this.props.items.length}
+//     onCLick={this.onNextPageClick}/>
+//   )
+// </div>
+// )
 
 export default PaginatedList;
