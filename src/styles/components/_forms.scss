@@ -20,8 +20,7 @@
   background-color: $white;
   display: flex;
   flex-direction: column;
-  padding: $xs-spacing $s-spacing;
-  margin-left: $s-spacing;
+  padding: $xs-spacing 0;
   width: 100%;
 }
 
@@ -29,9 +28,7 @@
   background: transparent;
   border: 1px solid darken($gray-light, 10%);
   color: $gray-charcoal;
-  outline: none;
   padding: $xs-spacing $s-spacing;
-  width: 100%;
 }
 
 .form__input--disabled {
@@ -44,6 +41,7 @@
 
 .form__error {
   color: $red;
+  padding: $xs-spacing;
 }
 
 .form__actions {

@@ -4,17 +4,19 @@
   background-color: $white;
   border: 1px solid darken($gray-light, 10%);
   display: flex;
-  margin-top: $xxl-spacing;
+  justify-content: center;
+  align-items: center;
+  // margin-top: $xxl-spacing;
   padding: $s-spacing;
   height: 500px;
 }
 
-.split-pane__left {
-  margin-right: $s-spacing;
+.split-pane__item {
+  padding: $s-spacing;
   width: $max-width / 2;
 }
 
-.split-pane__right {
+.split-pane__item--right {
   display: none;
 
   @media (min-width: $desktop-breakpoint) {
