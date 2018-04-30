@@ -1,5 +1,8 @@
+@import "./settings";
+
 body {
-  background-color: grey;
+  background-color: $gray-light;
+  color: $gray;
   font-family: sans-serif;
   font-size: $s-text;
   margin: 0;
@@ -9,5 +12,4 @@ body {
   margin: 0 auto;
   max-width: $max-width;
   padding: $s-spacing;
-  background-color: black;
 }

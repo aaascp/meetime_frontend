@@ -1,15 +1,17 @@
 @import "../base/settings";
 
 .split-pane {
+  background-color: $white;
+  border: 1px solid darken($gray-light, 10%);
   display: flex;
-  background-color: yellow;
   justify-content: space-around;
+  margin-top: $xxl-spacing;
 }
 
 .split-pane__left {
-  background-color: green;
-  width: $max-width / 2;
+  // background-color: green;
   margin-right: $s-spacing;
+  width: $max-width / 2;
 }
 
 .split-pane__right {
