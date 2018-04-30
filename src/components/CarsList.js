@@ -10,6 +10,7 @@ class CarsList extends React.Component {
 
   itemClickHandler = ({ id, index }) => {
     this.props.fetchCar({ id, index });
+    this.props.onClick();
   };
 
   deleteClickHandler = ({ id, index }) => {
@@ -17,7 +18,6 @@ class CarsList extends React.Component {
   };
 
   nextPageHandler = item => {
-    console.log(this.props.nextUrl);
     this.props.fetchCarsList(this.props.nextUrl);
   };
 
@@ -30,6 +30,7 @@ class CarsList extends React.Component {
         items={this.props.carsList}
         links={this.props.links}
         limit={this.props.limit}
+        onClick={this.props.onClick}
         totalCount={this.props.totalCount}
       />
     );

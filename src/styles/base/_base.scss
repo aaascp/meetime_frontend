@@ -13,3 +13,17 @@ body {
   max-width: $max-width;
   padding: $s-spacing;
 }
+
+.small-only {
+  display: block;
+  @media (min-width: $desktop-breakpoint) {
+    display: none;
+  }
+}
+
+.big-only {
+  display: block;
+  @media (max-width: $desktop-breakpoint) {
+    display: none;
+  }
+}

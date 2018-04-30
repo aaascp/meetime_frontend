@@ -1,6 +1,6 @@
 //Colors
 $gray-light: rgb(242, 242, 242);
-$gray: rgb(136, 136, 136);
+$gray: rgb(180, 180, 180);
 $gray-charcoal: rgb(72, 72, 72);
 $green: rgb(78, 173, 74);
 $white: white;
@@ -8,6 +8,7 @@ $red: red;
 
 //Border
 $s-border: 4px;
+$-border: 16px;
 
 //Spacings
 $xxs-spacing: 4px;
@@ -33,6 +34,7 @@ $primary-button-height: 48px;
 
 //container sizes
 $main-container-height: 500px;
+$main-container-height-mobile: 350px;
 
 //Breakpoints
 $desktop-breakpoint: 960px;

@@ -2,9 +2,8 @@ import React from "react";
 
 class ListItem extends React.Component {
   onItemClick = event => {
-    event.preventDefault();
-    const id = event.target.dataset.id;
-    const index = event.target.dataset.index;
+    const id = event.currentTarget.dataset.id;
+    const index = event.currentTarget.dataset.index;
     this.props.itemClickHandler({ id, index });
   };
 
