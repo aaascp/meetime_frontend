@@ -6,6 +6,11 @@
 
 .form__input-value--header {
   font-size: $l-text;
+  text-align: center;
+
+  @media (min-width: $desktop-breakpoint) {
+    text-align: left;
+  }
 }
 
 .form__info--header {

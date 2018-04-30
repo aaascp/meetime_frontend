@@ -1,19 +1,23 @@
 @import "../base/settings";
 
 .split-pane {
+  align-items: center;
   background-color: $white;
   border: 1px solid darken($gray-light, 10%);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  // margin-top: $xxl-spacing;
   padding: $s-spacing;
   height: $main-container-height;
 }
 
 .split-pane__item {
   padding: $s-spacing;
-  width: $max-width / 2;
+  width: $max-width;
+  max-height: 100%;
+
+  @media (min-width: $desktop-breakpoint) {
+    display: block;
+    width: $max-width / 2;
+  }
 }
 
 .split-pane__item--right {
@@ -21,6 +25,5 @@
 
   @media (min-width: $desktop-breakpoint) {
     display: block;
-    width: $max-width / 2;
   }
 }
