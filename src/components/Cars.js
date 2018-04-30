@@ -60,7 +60,7 @@ class Cars extends React.Component {
           </div>
 
           <div className={`split-pane__item ${this.showRightStyle()}`}>
-            <CarsForm />
+            <CarsForm onClick={this.showLeft} />
           </div>
         </div>
       </div>

@@ -83,7 +83,11 @@ class CarsForm extends React.Component {
                 Limpar
               </button>
             )}
-            <button type="submit" className="button form__submit">
+            <button
+              type="submit"
+              className="button form__submit"
+              onClick={this.props.onClick}
+            >
               {this.props.isUpdate ? "Atualizar" : "Salvar"}
             </button>
           </div>
