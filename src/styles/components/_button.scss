@@ -5,7 +5,8 @@
   border-radius: $s-border;
   color: $white;
   font-size: $s-text;
-  padding: $xs-spacing $m-spacing;
+  height: $primary-button-height;
+  min-width: $primary-button-width;
 
   &:disabled {
     opacity: 0.6;
@@ -16,4 +17,6 @@
   background-color: transparent;
   border: none;
   padding: 0;
+  min-width: auto;
+  height: auto;
 }

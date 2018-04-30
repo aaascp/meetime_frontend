@@ -68,7 +68,9 @@ class CarsForm extends React.Component {
   render() {
     return (
       <div>
-        <h1>{this.props.isUpdate ? "Atualizar" : "Novo"} Carro</h1>
+        <h1 className="form__title">
+          {this.props.isUpdate ? "Atualizar" : "Novo"} Carro
+        </h1>
         <form
           className="form"
           onSubmit={this.props.handleSubmit(this.handleSubmitForm)}
