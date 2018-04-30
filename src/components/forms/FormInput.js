@@ -25,9 +25,9 @@ const FormInput = ({
             placeholder={placeholder}
             disabled={disabled}
           />
-        </div>
-        <div className="form__error">
-          {(selectedError && error) || (touched && error)}
+          <div className="form__error">
+            {(selectedError && error) || (touched && error)}
+          </div>
         </div>
       </div>
     )

@@ -6,24 +6,31 @@
   flex-direction: column;
 }
 
+.form__label {
+  width: 30%;
+}
+
 .form__field {
   display: flex;
-  flex-direction: column;
-  margin-bottom: $s-spacing;
+  align-items: center;
+  // padding: $xs-spacing $s-spacing;
 }
 
 .form__input {
-  background: blue;
-  border: 10px outset green;
-  color: white;
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
   padding: $xs-spacing $s-spacing;
+  margin-left: $s-spacing;
+  width: 100%;
 }
 
 .form__input-value {
   background: transparent;
-  border: none;
-  color: white;
+  border: 1px solid darken($gray-light, 10%);
+  color: $gray-charcoal;
   outline: none;
+  padding: $xs-spacing $s-spacing;
   width: 100%;
 }
 
@@ -32,11 +39,11 @@
 }
 
 .form__input--error {
-  border-color: red;
+  border-color: $red;
 }
 
 .form__error {
-  color: red;
+  color: $red;
 }
 
 .form__actions {

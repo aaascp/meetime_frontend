@@ -1,18 +1,19 @@
 @import "../base/settings";
 
 .button {
-  padding: $xs-spacing $s-spacing;
-  font-size: $m-text;
-  font-weight: bold;
+  background-color: $green;
   border-radius: $s-border;
+  color: $white;
+  font-size: $s-text;
+  padding: $xs-spacing $m-spacing;
 
   &:disabled {
-    border-color: grey;
+    opacity: 0.6;
   }
 }
 
 .button--inline {
-  padding: 0;
   background-color: transparent;
   border: none;
+  padding: 0;
 }
