@@ -7,7 +7,6 @@ import {
 } from "./carsFieldsValidations";
 
 export default [
-  { label: "ID", name: "id", disabled: true, hideOnNew: true },
   {
     label: "Responsável",
     name: "userId",

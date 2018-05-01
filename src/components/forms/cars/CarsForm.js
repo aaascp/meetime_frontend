@@ -38,6 +38,7 @@ class CarsForm extends React.Component {
     } else {
       this.handleAddCar();
     }
+    this.props.clearCar();
   };
 
   onClearClick = event => {

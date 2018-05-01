@@ -65,7 +65,7 @@
 
 .form__actions {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
 
   @media (min-width: $small-breakpoint) {
     flex-direction: row;
@@ -75,7 +75,7 @@
 
 .form__submit {
   margin-left: 0;
-  margin-top: $s-spacing;
+  margin: $s-spacing 0;
 
   @media (min-width: $small-breakpoint) {
     margin-left: auto;
