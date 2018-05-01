@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_API = "http://localhost:9000/api";
+const BASE_API = "https://meecarros-backend.herokuapp.com/ ";
 const PIPEDRIVE_API = "https://api.pipedrive.com";
 
 export const fetchOptions = ({ method = "GET", data, mode = "cors" }) => {
