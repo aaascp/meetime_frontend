@@ -30,7 +30,7 @@ export const addCar = async fields => {
   });
 
   if (error) {
-    return { error: JSON.parse(error.config.data) };
+    return { error };
   } else {
     return { data };
   }
