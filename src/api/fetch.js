@@ -3,10 +3,10 @@ import axios from "axios";
 const BASE_API = "https://meecarros-backend.herokuapp.com/api";
 const PIPEDRIVE_API = "https://api.pipedrive.com";
 
-export const fetchOptions = ({ method = "GET", data, mode = "cors" }) => {
+export const fetchOptions = ({ method = "GET", data }) => {
   const options = {
     method: method,
-    mode,
+    crossDomain: true,
     responseType: "json"
   };
 
@@ -18,7 +18,7 @@ export const fetchOptions = ({ method = "GET", data, mode = "cors" }) => {
 export const pipedriveApiCall = async ({ path, options }) => {
   const { error, response } = await apiCall({
     url: `${PIPEDRIVE_API}${path}`,
-    options
+    options: fetchOptions({ ...options })
   });
 
   if (error) {
@@ -31,7 +31,7 @@ export const pipedriveApiCall = async ({ path, options }) => {
 export const baseApiCall = async ({ url, path, options }) => {
   const { error, response } = await apiCall({
     url: url || `${BASE_API}${path}`,
-    options
+    options: fetchOptions({ ...options })
   });
 
   if (error) {
@@ -41,7 +41,7 @@ export const baseApiCall = async ({ url, path, options }) => {
   }
 };
 
-const apiCall = async ({ url, options = fetchOptions }) => {
+const apiCall = async ({ url, options }) => {
   try {
     const response = await axios({ url, ...options });
     return { response };
