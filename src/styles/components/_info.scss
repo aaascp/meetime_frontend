@@ -1,0 +1,15 @@
+@import "../base/settings";
+
+.info {
+  font-size: $xl-text;
+  padding: $s-spacing;
+  text-align: center;
+}
+
+.info--error {
+  color: $red;
+}
+
+.info--success {
+  color: $green;
+}

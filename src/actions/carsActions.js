@@ -1,4 +1,5 @@
 import {
+  API_ERROR,
   CAR_SELECT,
   CAR_CLEAR,
   CARS_LIST,
@@ -16,22 +17,31 @@ export const clearCar = () => dispatch => {
 
 export const fetchCar = ({ id, index }) => async dispatch => {
   const { error, data } = await api.fetchCar(id);
-  if (!error) dispatch({ type: CAR_SELECT, payload: { car: data, index } });
+  if (error) {
+    dispatch({ type: API_ERROR });
+  } else {
+    dispatch({ type: CAR_SELECT, payload: { car: data, index } });
+  }
 };
 
 export const fetchCarsList = url => async dispatch => {
   const { error, data, links, totalCount } = await api.fetchCarsList(url);
-  if (!error)
+  if (error) {
+    dispatch({ type: API_ERROR });
+  } else {
     dispatch({
       type: CARS_LIST,
       payload: { carsList: data, links, totalCount }
     });
+  }
 };
 
 export const addCar = fields => async dispatch => {
   const { error, data } = await api.addCar(fields);
   if (error) {
+    dispatch({ type: API_ERROR });
     dispatch({ type: CAR_SELECT_ERROR, error });
+    return error;
   } else {
     dispatch({ type: CARS_LIST_ADD, car: data });
   }
@@ -40,7 +50,9 @@ export const addCar = fields => async dispatch => {
 export const updateCar = ({ fields, index }) => async dispatch => {
   const { error, data } = await api.updateCar(fields);
   if (error) {
+    dispatch({ type: API_ERROR });
     dispatch({ type: CAR_SELECT_ERROR, error });
+    return error;
   } else {
     dispatch({ type: CARS_LIST_UPDATE, payload: { car: data, index } });
   }
@@ -48,5 +60,9 @@ export const updateCar = ({ fields, index }) => async dispatch => {
 
 export const deleteCar = ({ id, index }) => async dispatch => {
   const { error } = await api.deleteCar(id);
-  if (!error) dispatch({ type: CARS_LIST_REMOVE, index });
+  if (error) {
+    dispatch({ type: API_ERROR });
+  } else {
+    dispatch({ type: CARS_LIST_REMOVE, index });
+  }
 };
