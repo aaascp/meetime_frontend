@@ -6,7 +6,7 @@ import { actions } from "../actions";
 const TOKEN_COOKIE = "TOKEN_COOKIE";
 
 class Header extends React.Component {
-  state = { token: localStorage.getItem(TOKEN_COOKIE) || null };
+  state = { token: localStorage.getItem(TOKEN_COOKIE) || "" };
 
   componentDidMount() {
     const DEBOUNCE_TIME = 1500;

@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { debounce } from "lodash";
 import { actions } from "../actions";
 
 class Info extends React.Component {

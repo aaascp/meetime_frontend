@@ -11,5 +11,5 @@ export const parseNavLink = ({ link }) => {
 
 export const getTotalCount = header => {
   const totalCount = header["x-total-count"];
-  return Number.parseInt(totalCount) || 0;
+  return Number.parseInt(totalCount, 10) || 0;
 };
