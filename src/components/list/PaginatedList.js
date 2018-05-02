@@ -25,8 +25,17 @@ class PaginatedList extends React.Component {
     }
   };
 
+  onEmptyClick = () => {
+    this.props.emptyClickHandler();
+  };
+
   renderEmptyList = () => {
-    return <div className="list--empty">Lista vazia</div>;
+    return (
+      <div className="list--empty" onClick={this.onEmptyClick}>
+        Lista vazia<br />
+        (clique para popular)
+      </div>
+    );
   };
 
   renderListItems = () => {
@@ -57,23 +66,5 @@ class PaginatedList extends React.Component {
     );
   }
 }
-
-// <div className="list">
-//   this.props.items.map((item, index) => (
-//   <ListItem
-//     itemClickHandler={this.onItemClick}
-//     deleteClickHandler={this.onDeleteClick}
-//     item={item}
-//     name={item[this.props.itemName]}
-//     index={index}
-//     key={item.id}
-//   />
-//   <LoadMoreItem
-//   totalCount={this.props.totalCount}
-//    itemsSize={this.props.items.length}
-//     onCLick={this.onNextPageClick}/>
-//   )
-// </div>
-// )
 
 export default PaginatedList;

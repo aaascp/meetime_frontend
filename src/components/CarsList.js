@@ -21,9 +21,14 @@ class CarsList extends React.Component {
     this.props.fetchCarsList(this.props.nextUrl);
   };
 
+  populateList = () => {
+    this.props.populateList();
+  };
+
   render() {
     return (
       <PaginatedList
+        emptyClickHandler={this.populateList}
         itemClickHandler={this.itemClickHandler}
         deleteClickHandler={this.deleteClickHandler}
         nextPageHandler={this.nextPageHandler}

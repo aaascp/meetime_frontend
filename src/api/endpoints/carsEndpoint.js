@@ -56,3 +56,11 @@ export const deleteCar = async id => {
   });
   return { error, data };
 };
+
+export const populateCarsList = async () => {
+  const { error, data } = await baseApiCall({
+    path: `/v1/seed`,
+    options: fetchOptions({ method: "PUT" })
+  });
+  return { error, data };
+};
