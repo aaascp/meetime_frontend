@@ -6,7 +6,7 @@ class Info extends React.Component {
   state = { showMessage: false };
 
   componentDidUpdate = prevProps => {
-    const INFO_TIMEOUT = 3000;
+    const INFO_TIMEOUT = 5000;
     if (
       prevProps.apiError === this.props.apiError &&
       prevProps.apiSuccess === this.props.apiSuccess
@@ -40,10 +40,19 @@ class Info extends React.Component {
     }
   };
 
-  render = () =>
-    this.state.showMessage && (
-      <div className={`info ${this.getInfoStyle()}`}>{this.getMessage()}</div>
-    );
+  getVisibility = () => {
+    if (this.state.showMessage) {
+      return "info__show";
+    } else {
+      return "";
+    }
+  };
+
+  render = () => (
+    <div className={`info ${this.getInfoStyle()} ${this.getVisibility()}`}>
+      {this.getMessage()}
+    </div>
+  );
 }
 
 const mapStateToProps = state => {

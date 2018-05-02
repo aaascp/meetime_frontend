@@ -2,8 +2,16 @@
 
 .info {
   font-size: $xl-text;
-  padding: $s-spacing;
+  margin-top: $s-spacing;
+  height: 0;
+  opacity: 0;
   text-align: center;
+  transition: height 1s ease-in-out, opacity 1s 1s ease-in-out;
+
+  &.info__show {
+    height: $xl-spacing;
+    opacity: 1;
+  }
 }
 
 .info--error {
