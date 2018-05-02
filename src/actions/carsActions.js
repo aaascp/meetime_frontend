@@ -21,7 +21,6 @@ export const fetchCar = ({ id, index }) => async dispatch => {
   if (error) {
     dispatch({ type: API_ERROR });
   } else {
-    dispatch({ type: API_SUCCESS });
     dispatch({ type: CAR_SELECT, payload: { car: data, index } });
   }
 };
@@ -31,7 +30,6 @@ export const fetchCarsList = url => async dispatch => {
   if (error) {
     dispatch({ type: API_ERROR });
   } else {
-    dispatch({ type: API_SUCCESS });
     dispatch({
       type: CARS_LIST,
       payload: { carsList: data, links, totalCount }
@@ -68,7 +66,6 @@ export const deleteCar = ({ id, index }) => async dispatch => {
   if (error) {
     dispatch({ type: API_ERROR });
   } else {
-    dispatch({ type: API_SUCCESS });
     dispatch({ type: CARS_LIST_REMOVE, index });
   }
 };
